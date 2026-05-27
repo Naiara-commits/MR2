@@ -7,27 +7,45 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private TextMeshProUGUI contadorTexto;
-    private int cubosDestruidos = 0;
-    private const int fin = 10;
+    public int puntosPorTopo = 10;
+    public int meta = 100;
+
+    private int puntuacion = 0;
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+    }
+    public void Start()
+    {
+        puntuacion = 0;
+        ActualizarUI();
     }
 
     public void Contador()
     {
-        cubosDestruidos++;
-        contadorTexto.text = cubosDestruidos + " / " + fin;
+        puntuacion += puntosPorTopo;
+        ActualizarUI();
 
-        if (cubosDestruidos >= fin)
+        if (MetaAlcanzada())
         {
-            SceneManager.LoadScene("MainMenu");
-
-            //FindObjectOfType<Topos>().CancelInvoke(nameof(Topos.spawnTopos));
-
+            Invoke(nameof(CargarMenu), 1.0f);
         }
     }
 
-    public bool MetaAlcanzada() => cubosDestruidos >= fin;
+    public bool MetaAlcanzada() => puntuacion >= meta;
+    void CargarMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    void ActualizarUI()
+    {
+        if (contadorTexto != null)
+            contadorTexto.text = puntuacion + " / " + meta;
+    }
 }

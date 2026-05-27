@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class Topos : MonoBehaviour
+public class CubeManager : MonoBehaviour
 {
     public GameObject[] cubes;
     public TextMeshProUGUI scoreText;
@@ -26,11 +26,11 @@ public class Topos : MonoBehaviour
     void Start()
     {
         exitButton.SetActive(false);
-        if (SceneManager.GetActiveScene().name == "Scene1")
+        if (SceneManager.GetActiveScene().name == "Level1")
         {
             timeLimit = 3f;
         }
-        else if (SceneManager.GetActiveScene().name == "Scene2")
+        else if (SceneManager.GetActiveScene().name == "Level2")
         {
             timeLimit = 1f;
         }
@@ -80,7 +80,7 @@ public class Topos : MonoBehaviour
 
         int maxOptions;
 
-        if (SceneManager.GetActiveScene().name == "Scene1")
+        if (SceneManager.GetActiveScene().name == "Level1")
         {
             maxOptions = 3;
         }
@@ -144,11 +144,11 @@ public class Topos : MonoBehaviour
         }
 
         exitButton.SetActive(true);
-        scoreText.text = "¡HAS GANADO!";
+        scoreText.text = "Â¡HAS GANADO!";
 
     }
 
-    public void ExitGame()
+    public void ExitGame()  
     {
         SceneManager.LoadScene("Menu");
     }

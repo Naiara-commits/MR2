@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 namespace UnityEngine.XR.ARFoundation.Samples
 {
     [RequireComponent(typeof(XRSimpleInteractable))]
-    public sealed class TouchColorChanger : MonoBehaviour
+    public sealed class MenuManager : MonoBehaviour
     {
         [SerializeField] private Color touchedColor = Color.green;
 
